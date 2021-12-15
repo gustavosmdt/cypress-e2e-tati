@@ -11,16 +11,16 @@ describe('Scenarios where authentication is a pre-requirement', () => {
         const noteDescription = faker.lorem.words(4)
 
         cy.createNote(noteDescription)
-        cy.wait(2000)
+        cy.wait('@getNotes')
 
         const updatedNoteDescription = faker.lorem.words(4)
         const attachFile = true
 
         cy.editNote(noteDescription, updatedNoteDescription, attachFile)
-        cy.wait(2000)
+        cy.wait('@getNotes')
 
         cy.deleteNote(updatedNoteDescription)
-        cy.wait(2000)
+        cy.wait('@getNotes')
     })
 
     it('successfully submits the form', () => {
@@ -28,7 +28,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
 
         cy.fillSettingsFormAndSubmit()
 
-        cy.wait(2000)
+        cy.wait('@getNotes', { timeout: 8000 })
         cy.wait('@paymentRequest').then(response => {
             expect(response.state).to.equal('Complete')
         })
@@ -36,13 +36,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
 
     it('logs out', { tags: '@desktop-and-tablet' }, () => {
         cy.visit('/')
-        cy.wait(2000)
-
-        // if (Cypress.config('viewportWidth') < Cypress.env('viewportWidthBreakpoint')) {
-        //     cy.get('.navbar-toggle.collapsed')
-        //         .should('be.visible')
-        //         .click()
-        // }
+        cy.wait('@getNotes')
 
         /* ==== Generated with Cypress Studio ==== */
         cy.get('.nav > :nth-child(2) > a').click()
