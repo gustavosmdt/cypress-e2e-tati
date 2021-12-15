@@ -4,7 +4,8 @@
     "experimentalSessionSupport": true,
     "chromeWebSecurity": false,
     "experimentalStudio": true,
+    "projectId": "j9chu3",
     "env": {
         "viewportWidthBreakpoint": 768
-      }
+    }
 }
