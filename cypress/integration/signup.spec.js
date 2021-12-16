@@ -1,4 +1,4 @@
-/// <reference types="cypress"/>
+/// <reference path="../support/commands.d.ts" />
 
 describe('Login testing',() => {
 
